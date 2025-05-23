@@ -32,3 +32,9 @@ Perubahan ini penting untuk debugging dan transparansi komunikasi antar client, 
 
 **Alasan perubahan:**
 Agar setiap client dapat mengetahui asal pesan (IP dan port pengirim), sehingga komunikasi lebih informatif dan mudah ditelusuri.
+
+
+### BONUS Change the websocket server!
+![alt text](image.png)
+
+Dalam pengembangan ini, server WebSocket Rust dari Tutorial 2 dimodifikasi untuk dapat melayani webchat berbasis Yew dari Tutorial 3. Perubahan utama fokus pada format komunikasi, di mana server sekarang dapat menangani format JSON yang digunakan oleh frontend Yew, tidak hanya text sederhana. Modifikasi ini berhasil karena WebSocket pada dasarnya bersifat transport-agnostic—tidak peduli format data yang dikirimkan selama pengiriman tetap sebagai text message. Untuk mengimplementasikan perubahan ini, server Rust ditambahkan kemampuan untuk melakukan serialisasi dan deserialisasi pesan JSON dengan memanfaatkan struct ChatMessage dan library serde_json. Server juga tetap mendukung backward compatibility untuk client text sederhana. Sebagai perbandingan dengan server JavaScript, implementasi Rust menawarkan keunggulan signifikan dalam hal memory safety, performa, konkurensi dengan Tokio async runtime, dan type safety dengan compile-time error checking. Meskipun JavaScript memiliki kelebihan dalam kecepatan development dan ekosistem yang lebih besar, untuk aplikasi chat yang membutuhkan reliability dan handling koneksi concurrent dalam jumlah besar, server Rust merupakan pilihan yang lebih optimal dengan throughput yang lebih tinggi, penggunaan memori yang lebih efisien, dan latency yang lebih rendah pada skenario high-load.
