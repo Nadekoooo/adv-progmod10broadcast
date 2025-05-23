@@ -19,3 +19,16 @@ Kedua, pada client.rs, URI WebSocket diubah dari
 `ws://127.0.0.1:8000` menjadi `ws://127.0.0.1:8080`.
 
 Aplikasi tetap menggunakan protokol WebSocket yang diindikasikan oleh skema URI ws:// pada client dan penggunaan library tokio_websockets dengan komponen ServerBuilder dan WebSocketStream pada server. Setelah modifikasi port dilakukan, fungsionalitas broadcast masih berjalan dengan baik karena seluruh komponen aplikasi telah disesuaikan untuk menggunakan port yang sama (8080) dan protokol yang sama (WebSocket). Pengujian dengan multiple client menunjukkan bahwa pesan tetap berhasil didistribusikan ke semua client yang terhubung.
+
+### 2.3. Small changes: Add IP and Port to Broadcast Message
+
+![alt text](image-3.png)
+
+Pada eksperimen ini, dilakukan modifikasi kecil pada server agar setiap pesan yang diterima dari client akan dibroadcast ke semua client lain dengan tambahan informasi alamat IP dan port pengirim. Perubahan ini dilakukan dengan menambahkan format `[IP:PORT] pesan` pada setiap pesan yang dikirimkan server ke client.
+
+Hasilnya, setiap client dapat melihat dengan jelas siapa pengirim pesan berdasarkan alamat IP dan port yang tertera di awal pesan. Hal ini membantu dalam memahami alur pesan dan asal pesan pada sistem chat, meskipun belum ada fitur username.
+
+Perubahan ini penting untuk debugging dan transparansi komunikasi antar client, serta dapat menjadi dasar untuk pengembangan fitur identitas pengguna di masa depan.
+
+**Alasan perubahan:**
+Agar setiap client dapat mengetahui asal pesan (IP dan port pengirim), sehingga komunikasi lebih informatif dan mudah ditelusuri.

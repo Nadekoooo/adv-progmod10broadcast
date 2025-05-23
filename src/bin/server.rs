@@ -32,9 +32,9 @@ async fn handle_connection(
                 Ok(msg) => {
                     if msg.is_text() {
                         let text = msg.as_text().unwrap_or("").to_string();
+                        let msg_with_addr = format!("[{addr}] {text}");
                         println!("Received from {addr}: {text}");
-                        
-                        let _ = bcast_tx.send(text);
+                        let _ = bcast_tx.send(msg_with_addr);
                     } else if msg.is_close() {
                         break;
                     }
