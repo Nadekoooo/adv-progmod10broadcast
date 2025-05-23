@@ -1,6 +1,6 @@
 ### 2.1. Original code of broadcast chat
 
-(![alt text](image-1.png))
+![alt text](image-1.png)
 
 Implementasi broadcast chat berhasil dijalankan dengan server yang mendengarkan di port 2000 dan tiga client yang terhubung secara bersamaan. Screenshot menunjukkan bagaimana tiap pesan ("ini satu", "ini dua", "ini tiga") yang dikirim oleh satu client diteruskan oleh server ke semua client yang terhubung. Server mencatat setiap koneksi baru dengan alamat IP dan port masing-masing client (127.0.0.1:51245, 127.0.0.1:51246, 127.0.0.1:51247). Sistem broadcast berfungsi sebagaimana mestinya, dimana setiap pesan yang dikirim ke server didistribusikan kembali ke semua client tanpa terkecuali. Arsitektur broadcast ini memungkinkan komunikasi grup dimana semua peserta dapat melihat pesan dari siapa saja dalam jaringan.
 
